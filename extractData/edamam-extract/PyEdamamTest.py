@@ -7,9 +7,8 @@ e = PyEdamam(recipes_appid=appId,
 
 # Test Loop through data to get information from a single recipe.
 def getFoodInfo(search, df_recipeBook, ingredientNum):
-  df_recipe =  pd.DataFrame()
-
   for recipe in e.search_recipe(search):
+    df_recipe =  pd.DataFrame()
     print(recipe)
     
     ingredientNum = ingredientNum + 1
@@ -76,9 +75,10 @@ def getFoodInfo(search, df_recipeBook, ingredientNum):
     ingredientNames = recipe.ingredient_names
     ingredientQuantities = recipe.ingredient_quantities
     
+    df_recipe['ingredientNum'] = ingredientNum
     df_recipe['recipeTitle'] = recipeTitle
     df_recipe['recipeSearch_Used'] = search
-    df_recipe['website'] = website 
+    df_recipe['website'] = website
     df_recipe['image'] = image
     df_recipe['servingSize'] = servingSize
     df_recipe['foodGenre'] = foodGenre
@@ -109,6 +109,7 @@ def getFoodInfo(search, df_recipeBook, ingredientNum):
 
 
 # list of foods
+PATH = "C:\\Users\\PC\\code\\githubProjects\\final-project-recipe-db\\"
 listOfFoods = ['Chicken Parmesan', 'Cheeseburger', 'Ham', 'Scrambled Eggs', 'Egg Sandwich', 'Bread', 'Pizza', 'Pasta', 'Sweet Tea']
 df =  pd.DataFrame()
 
@@ -116,9 +117,12 @@ df =  pd.DataFrame()
 ingredientNum = 10000
 
 for food in listOfFoods:
-  df = getFoodInfo(food, df, ingredientNum)
+  df, ingredientNum = getFoodInfo(food, df, ingredientNum)
+  print('Search Complete: ' + food)
+  print(ingredientNum)
+  print()
 
-
+df.to_csv(PATH, index=False)
 
 # for testing purposes
   #print(recipe.url)
