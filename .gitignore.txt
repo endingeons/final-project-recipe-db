@@ -1,2 +1,0 @@
-*secretKeys.py
-*__pycache__
