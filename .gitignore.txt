@@ -1,2 +1,2 @@
-secretKeys.py
-__pycache__
+*secretKeys.py
+*__pycache__
