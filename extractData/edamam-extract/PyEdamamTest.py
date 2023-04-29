@@ -8,14 +8,13 @@ e = PyEdamam(recipes_appid=appId,
 # Test Loop through data to get information from a single recipe.
 def getFoodInfo(search, df_recipeBook, ingredientNum):
   for recipe in e.search_recipe(search):
-    df_recipe =  pd.DataFrame()
-    print(recipe)
+    #print(recipe)
     
     ingredientNum = ingredientNum + 1
     website = recipe.url
     image = recipe.image
     recipeTitle = recipe.label
-    servingSize = -1
+    #servingSize = -1
     foodGenre = recipe.cuisineType
     calories = recipe.calories
     time = recipe.totalTime
@@ -48,7 +47,7 @@ def getFoodInfo(search, df_recipeBook, ingredientNum):
           sugar = num.quantity
           break
 
-    # dietary restriciton toggles
+    # dietary restriction toggles
     dietaryRestrictions = recipe.healthLabels
 
     isVegan = False
@@ -75,42 +74,77 @@ def getFoodInfo(search, df_recipeBook, ingredientNum):
     ingredientNames = recipe.ingredient_names
     ingredientQuantities = recipe.ingredient_quantities
     
-    df_recipe['ingredientNum'] = ingredientNum
-    df_recipe['recipeTitle'] = recipeTitle
-    df_recipe['recipeSearch_Used'] = search
-    df_recipe['website'] = website
-    df_recipe['image'] = image
-    df_recipe['servingSize'] = servingSize
-    df_recipe['foodGenre'] = foodGenre
-    df_recipe['calories'] = calories
-    df_recipe['time'] = time
+    # make a dictionary
+    df_recipe = {'ingredientNum':[],
+                 'recipeTitle':[],
+                 'recipeSearch_Used':[],
+                 'website':[],
+                 'image':[],
+                 #'servingSize':[],
+                 'foodGenre':[],
+                 'calories':[],
+                 'time':[],
 
-    df_recipe['fat'] = fat
-    df_recipe['satFat'] = satFat
-    df_recipe['protein'] = protein
-    df_recipe['cholesterol'] = cholesterol
-    df_recipe['sodium'] = sodium
-    df_recipe['carbs'] = carbs
-    df_recipe['sugar'] = sugar
+                 'fat':[],
+                 'satFat':[],
+                 'protein':[],
+                 'cholesterol':[],
+                 'sodium':[],
+                 'carbs':[],
+                 'sugar':[],
+                 
+                 'isVegan':[],
+                 'isVegetarian':[],
+                 'isPescatarian':[],
+                 'isDairyFree':[],
+                 'isGlutenFree':[],
+                 'isPeanutFree':[],
+                 
+                 'ingredientNames':[],
+                 'ingredientQuantities':[]}
+    
+    # populate dictionary
+    df_recipe['ingredientNum'].append(ingredientNum)
+    df_recipe['recipeTitle'].append(recipeTitle)
+    df_recipe['recipeSearch_Used'].append(search)
+    df_recipe['website'].append(website)
+    df_recipe['image'].append(image)
+    #df_recipe['servingSize'].append(servingSize)
+    df_recipe['foodGenre'].append(foodGenre)
+    df_recipe['calories'].append(calories)
+    df_recipe['time'].append(time)
 
-    df_recipe['isVegan'] = isVegan
-    df_recipe['isVegetarian'] = isVegetarian
-    df_recipe['isPescatarian'] = isPescatarian
-    df_recipe['isDairyFree'] = isDairyFree
-    df_recipe['isGlutenFree'] = isGlutenFree
-    df_recipe['isPeanutFree'] = isPeanutFree
+    df_recipe['fat'].append(fat)
+    df_recipe['satFat'].append(satFat)
+    df_recipe['protein'].append(protein)
+    df_recipe['cholesterol'].append(cholesterol)
+    df_recipe['sodium'].append(sodium)
+    df_recipe['carbs'].append(carbs)
+    df_recipe['sugar'].append(sugar)
+
+    df_recipe['isVegan'].append(isVegan)
+    df_recipe['isVegetarian'].append(isVegetarian)
+    df_recipe['isPescatarian'].append(isPescatarian)
+    df_recipe['isDairyFree'].append(isDairyFree)
+    df_recipe['isGlutenFree'].append(isGlutenFree)
+    df_recipe['isPeanutFree'].append(isPeanutFree)
   
-    df_recipe['ingredientNames'] = [ingredientNames]
-    df_recipe['ingredientQuantities'] = [ingredientQuantities]
-  
+    df_recipe['ingredientNames'].append([ingredientNames])
+    df_recipe['ingredientQuantities'].append([ingredientQuantities])
+   
+    df_recipe = pd.DataFrame(df_recipe)
+    #df_recipe.to_csv("C:\\Users\\PC\\code\\githubProjects\\final-project-recipe-db\\testing1.csv", index=False)
+    
     df_recipeBook = df_recipeBook.append(df_recipe)
-  
+    
+    
+
   return df_recipeBook, ingredientNum
 
 
 # list of foods
-PATH = "C:\\Users\\PC\\code\\githubProjects\\final-project-recipe-db\\"
-listOfFoods = ['Chicken Parmesan', 'Cheeseburger', 'Ham', 'Scrambled Eggs', 'Egg Sandwich', 'Bread', 'Pizza', 'Pasta', 'Sweet Tea']
+PATH = "C:\\Users\\PC\\code\\githubProjects\\final-project-recipe-db\\data.csv"
+listOfFoods = ['Chicken Parmesan', 'Cheeseburger', 'Ham', 'Scrambled Eggs', 'Egg Sandwich', 'Bread', 'Pizza', 'Pasta', 'Sweet Tea', 'Tacos', 'Nachos']
 df =  pd.DataFrame()
 
 # used a large number so i dont overlap with Chelsea
@@ -123,67 +157,3 @@ for food in listOfFoods:
   print()
 
 df.to_csv(PATH, index=False)
-
-# for testing purposes
-  #print(recipe.url)
-  #print('\n')
-  #print(recipe.cuisineType)
-  #print(recipe.calories)
-  #for i in recipe.ingredient_names:
-  #    print(i)
-  #print('\n')
-  #print(recipe.ingredient_quantities)
-
-'''Recipies
-Recipy Key
-   URL              ---
-   Recipe Title     ---
-   Serving Size
-   Food Genre       ---
-   Calories         ---
-   Time             ---
-
-Users
-   User key
-   Recipy Key
-   Dietary Restrictions ---
-
-Ingredient List
-   Recipe Key 
-   Ingredient Key
-   value
-   Unit
-
-Recipy Nutrition
-   Recipy Key
-   Fats              ---
-   Saturated Fats    ---
-   Protein           ---
-   Cholesterol       ---
-   Sugar 
-   Sodium            ---
-   Vitamins
-
-Ingredient Info
-    Name
-    Category
-    Price
-
-
-'''
-# OLD NOTES
-# what to have in database 
-# Ingredients (name)
-
-# general
-# quanity
-# url?
-# food genre (Italian, Mexican, Inian, etc)
-# serving size (amount of people you can feed)
-# calories
-# time
-
-# nutrition  facts
-# fats
-# cholesteral
-# sugar
