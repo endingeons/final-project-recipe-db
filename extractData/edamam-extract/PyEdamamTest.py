@@ -18,9 +18,9 @@ def getFoodInfo(search, df_recipeBook, recipyKey, ingredientKey):
     image = recipe.image
     recipeTitle = recipe.label
     #servingSize = -1
-    foodGenre = recipe.cuisineType
+    category = recipe.cuisineType
     calories = recipe.calories
-    time = recipe.totalTime
+    total_time_minutes = recipe.totalTime
 
     fat =  recipe.digest['Fat']['daily']
     protein =  recipe.digest['Protein']['daily']
@@ -53,39 +53,39 @@ def getFoodInfo(search, df_recipeBook, recipyKey, ingredientKey):
     # dietary restriction toggles
     dietaryRestrictions = recipe.healthLabels
 
-    isVegan = False
-    isVegetarian = False
-    isPescatarian = False
-    isDairyFree = False
-    isGlutenFree = False
-    isPeanutFree = False
+    vegan = False
+    vegetarian = False
+    pescatarian = False
+    dairy_free = False
+    gluten_free = False
+    peanut_free = False
 
     for restrict in dietaryRestrictions:
       if restrict == 'Vegan':
-        isVegan = True
+        vegan = True
       elif restrict == 'Vegetarian':
-        isVegetarian = True
+        vegetarian = True
       elif restrict == 'Pescatarian':
-        isPescatarian = True
+        pescatarian = True
       elif restrict == 'Dairy-Free':
-        isDairyFree = True
+        dairy_free = True
       elif restrict == 'Gluten-Free':
-        isGlutenFree = True
+        gluten_free = True
       elif restrict == 'Peanut-Free':
-        isPeanutFree = True
+        peanut_free = True
     
     ingredientQuantities = recipe.ingredient_quantities
 
     # make a dictionary
-    df_recipe = {'recipyKey':[],
-                 'recipeTitle':[],
+    df_recipe = {'recipy_key':[],
+                 'title':[],
                  'recipeSearch_Used':[],
-                 'website':[],
+                 'url':[],
                  'image':[],
                  #'servingSize':[],
-                 'foodGenre':[],
+                 'category':[],
                  'calories':[],
-                 'time':[],
+                 'total_time_minutes':[],
 
                  'fat':[],
                  'satFat':[],
@@ -95,36 +95,36 @@ def getFoodInfo(search, df_recipeBook, recipyKey, ingredientKey):
                  'carbs':[],
                  'sugar':[],
                  
-                 'isVegan':[],
-                 'isVegetarian':[],
-                 'isPescatarian':[],
-                 'isDairyFree':[],
-                 'isGlutenFree':[],
-                 'isPeanutFree':[],
+                 'vegan':[],
+                 'vegetarian':[],
+                 'pescatarian':[],
+                 'dairy_free':[],
+                 'gluten_free':[],
+                 'peanut_free':[],
                  
                  'ingredientList':[],
                  'ingredientInformation':[]}
 
-    ingredientList = {'recipyKey':[],
-                      'ingredientKey':[],
+    ingredientList = {'recipy_key':[],
+                      'ingredient_key':[],
                       'value': [],
                       'unit':[]}
 
-    ingredientInformation = {'ingredientKey':[],
+    ingredientInformation = {'ingredient_key':[],
                              'name':[],
                              'category':[],
                              'price':[]}
 
     # populate dictionary
-    df_recipe['recipyKey'].append(recipyKey)
-    df_recipe['recipeTitle'].append(recipeTitle)
+    df_recipe['recipy_key'].append(recipyKey)
+    df_recipe['title'].append(recipeTitle)
     df_recipe['recipeSearch_Used'].append(search)
-    df_recipe['website'].append(website)
+    df_recipe['url'].append(website)
     df_recipe['image'].append(image)
     #df_recipe['servingSize'].append(servingSize)
-    df_recipe['foodGenre'].append(foodGenre)
+    df_recipe['category'].append(category)
     df_recipe['calories'].append(calories)
-    df_recipe['time'].append(time)
+    df_recipe['total_time_minutes'].append(total_time_minutes)
 
     df_recipe['fat'].append(fat)
     df_recipe['satFat'].append(satFat)
@@ -134,20 +134,20 @@ def getFoodInfo(search, df_recipeBook, recipyKey, ingredientKey):
     df_recipe['carbs'].append(carbs)
     df_recipe['sugar'].append(sugar)
 
-    df_recipe['isVegan'].append(isVegan)
-    df_recipe['isVegetarian'].append(isVegetarian)
-    df_recipe['isPescatarian'].append(isPescatarian)
-    df_recipe['isDairyFree'].append(isDairyFree)
-    df_recipe['isGlutenFree'].append(isGlutenFree)
-    df_recipe['isPeanutFree'].append(isPeanutFree)
+    df_recipe['vegan'].append(vegan)
+    df_recipe['vegetarian'].append(vegetarian)
+    df_recipe['pescatarian'].append(pescatarian)
+    df_recipe['dairy_free'].append(dairy_free)
+    df_recipe['gluten_free'].append(gluten_free)
+    df_recipe['peanut_free'].append(peanut_free)
     
     for idx, ingredient in enumerate(ingredientQuantities):
-      ingredientList['recipyKey'].append(recipyKey)
-      ingredientList['ingredientKey'].append(ingredientKey)
+      ingredientList['recipy_key'].append(recipyKey)
+      ingredientList['ingredient_key'].append(ingredientKey)
       ingredientList['value'].append(ingredient['quantity'])
       ingredientList['unit'].append(ingredient['measure'])
       
-      ingredientInformation['ingredientKey'].append(ingredientKey)
+      ingredientInformation['ingredient_key'].append(ingredientKey)
       ingredientInformation['name'].append(ingredient['text'])
       ingredientInformation['category'].append(ingredient['foodCategory'])
       ingredientInformation['price'].append(-1)

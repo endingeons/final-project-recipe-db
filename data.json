@@ -1,20 +1,20 @@
 {
-    "recipyKey": {
+    "recipy_key": {
         "0": 10110
     },
-    "recipeTitle": {
+    "title": {
         "0": "Nacho Cheese Sauce"
     },
     "recipeSearch_Used": {
         "0": "Nacho"
     },
-    "website": {
+    "url": {
         "0": "https://food52.com/recipes/20517-nacho-cheese-sauce"
     },
     "image": {
-        "0": "https://edamam-product-images.s3.amazonaws.com/web-img/146/14632605cda6d1543a93c08e42ae4499.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHEaCXVzLWVhc3QtMSJHMEUCIQCFoMcz9Ymun5M8k%2BjI8jKPS3v1nuTP6yZQtgNyCD%2BQIAIgWFIWJvxFE93UmEv8itHheEkTPhQUWaznAlPfXyh1SEUquQUIeRAAGgwxODcwMTcxNTA5ODYiDIt6WZhQLZ%2B6XbkrtSqWBb0DulLBs2VatDBuRSMe4BdJMLPN%2FtgDlOBEDxjbNQE5Unht5zP1b5Zbu5pHHCZXEXjRa3lmdmi8oRm2QyU8wC4CsdV0AfN6e455obtrQNMa7LhnecdorGAKeQtvTeg3mQgbxKZDPI%2BjZn4sugzqD92wC6Bj0ruQe38MzsdA%2B0hSTjpRERjeSR%2FZQjgiY5PHjKjAPU8KeA1HlZKbYcQTA7oS%2BTT54u3IlBXQWbJZm4xVU72ZrdOlePMrM%2Bswh58QI5qyJZVJOCLvT7W4YI7bYwe8Ik3tivn2%2BQcWJBSmjiiWDnWnjMXrUnMtgdUcYv7d9Jy7%2FR0wlNnthOH9ykmhJqi9B1SNNJ9lsaj79Z5Hw6dvYUTO4ZGWACi2Hb33DRgWnmr478DKzNuszP1rFWU5fQ4vMAqHt%2FrWaFHE6rlmiHOtIhaFU%2ByBZjqXwzQfaOFs%2BAgJzqfySh1RFvRbB0zqLIroyjS4WUM%2FBn3CDLizbn7XLcbQBQIRDuyEaplfmGHBpzIWty8bP4uF5vLzAOrLBiwYev8fcx6UUVEl2bKHGMVIHAXX6F3xsoZEzMGB0XVxZ86p5NIxiZ2aMfs1LWBh%2BMyPqCmk6cfkn6z5U2dkEJE6tNZBuz4cPpB4jnHaOZUbjvp8TW%2FyolevWJQnZL5sNOmZ15woCpxNvwS9GtjlYYsGaHcNominHrz30RYoihnPX%2BSBR5lWCgjixadaT8KCXcxiBVqnlY%2BsdHssfFu2qRtR%2Fe9boaqLwfgvyS89idjFYZcWnrDz2VpfLexZQMFIaux%2FdVkTNUIFASpeCIRkBExf7yMi58d8LtzJhqpptsYV2m50i4y%2BNetk47Cn4AWdQiN6M%2B%2F5Z2nzOmEoRoDBVMPKuT%2FNN25tMOGFtaIGOrEBqmpo6Iu0bZ%2BdvA2XW7kf2rZMab68oSEm%2F66fBdm%2F2c%2BCHBOEykihwWCjkCj5ZQlMtdjXtoYmsjq1Sniu5ecETPFfqYDmcALs4z17bYPIQiBbhdoX5BVCu%2Bl0QVplGw4v%2FaqEhky1DT11XUTCwh%2BClzB9OKBN%2Bmx9B9dDDXI%2FiR16VEb37MoelWE%2BdDk2xFwfWsih94dWBHMIwlkdFEo0Sl3mq7Uh9ishWsT%2FrL615w8e&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230429T172446Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFG6WMFXTL%2F20230429%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=be2837063917fbd1ee8d63f952d2c66aa7686b12541a8a746eb92a480d2a41a7"
+        "0": "https://edamam-product-images.s3.amazonaws.com/web-img/146/14632605cda6d1543a93c08e42ae4499.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHEaCXVzLWVhc3QtMSJIMEYCIQDnNwSkBKeZlJTsBofb0n5GCo%2Fq37Ea505uwcxIwTj8DAIhAIiz8P0uSSmJAbxzawteuBIEPC8cw9KhreWckOhxMyV7KrkFCHoQABoMMTg3MDE3MTUwOTg2Igw%2BOQwjUmuyoUho3j0qlgVyvqiI6rycFqlzMVmlenDYPW5ghfziv7upk6FjW05VJ%2FAPApkXJYOfAZY0tFOhBcgJLJA5fv%2Bad7wEHPpNmRIjELo73iHGypl4ZvUvwapntT%2FJkDctiaFuG2nTRMpTq12tvxwhobmEoeeqb7QEjnRyW6oGTD%2FE%2FLM%2FBMOfepksCGTCj0ri5vUQsQdAilxj18uPn82gJltEVgoDqklzpyqRktaU2GiOvj7WMiGP9oAX6TFpYj%2F8dWZxyAyk20Os2KCEVSdvMZQZ%2FtVv4%2BylLq5Lz1mCT%2F27Ysmn1ADMs%2BHp1iKoyq%2BjUgMCpZzW1s93D1Pg2YuGOoIQPEb9b5AvEqB9E5d1NY7cdJUPvPPXiNIJnK16N5CvFhH8c4R66qo%2BZYdbYRdIgSJCZMi%2F1d6FFd14Jiyfy0JLegMwyHIN1334u%2BD2Kiu86yvbscYQHugzbuOS%2BCciwA2wEMba9JRCSKLSDx3Dek0U74gHtRqd%2FxD95xOZ5auB4qkoONKLn4IBHLMt%2FH9pSWMKIYLI6MLKaa7E1Ap2vn%2FMnYFTIST7ehKYkqyKoxivXoMk8Lnj2IkaVXSJfcQQ6Yu8Ot%2BQDgqSmZrCYHyLZX4Wqw2IDRbVoi7iFmTuLWPY83AmQsJvXu34aJIhvwHR%2FWAQiJUvKUEtn4UZ2vb9Kmy7N7yD%2FKmC9xCfltldjJFuHwIwTQQMR%2FjlWHaFLy9b9UTATQLVh8CRU%2FgNjCnB8VkD4kcnzlw7UT5qH8bptAEan8DtsDe5ZlBfxKEXcf6aCgPi%2FMeG2TZ2vFLRB7MUGUcqUa2JH%2F6me1Kff7EqpCOmGKT%2BEEms61j00NUkJCXoBRGnNkFeO6MVDZiOypjLwZt5f1fYGYHfLT6qS7HklBOVMzCbkLWiBjqwAUZu3viM2vWlBrmGwA0tS3e7cV1LnguouKkOjpMHVh1z4dJukJ2Mol3XmQRo0r0jshxZ96k%2BnfEJSF4jTc6tLfD2mjrHXOKkKNG2KLnZdUrz9OLwakUhwf3%2BF8kqrjPMet4%2FvNdKMX8tTleR4SZS6TJFEPM1%2Flee1IE0weUefyGyw6HqdhpB82LygcDNGM67cCjSoHSBagVUEBb001O2BfSifCFrL4uSMKbwwrVGzSmK&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230429T173810Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFKNAQ5PEX%2F20230429%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=7f110e7baa5b6f724baf7bad6cbbf9dfc37bcbe11415adc47cf89db30eaec7d9"
     },
-    "foodGenre": {
+    "category": {
         "0": [
             "american"
         ]
@@ -22,7 +22,7 @@
     "calories": {
         "0": 1249.8296750796105
     },
-    "time": {
+    "total_time_minutes": {
         "0": 0.0
     },
     "fat": {
@@ -46,28 +46,28 @@
     "sugar": {
         "0": 63.43875010019579
     },
-    "isVegan": {
+    "vegan": {
         "0": false
     },
-    "isVegetarian": {
+    "vegetarian": {
         "0": true
     },
-    "isPescatarian": {
+    "pescatarian": {
         "0": true
     },
-    "isDairyFree": {
+    "dairy_free": {
         "0": false
     },
-    "isGlutenFree": {
+    "gluten_free": {
         "0": false
     },
-    "isPeanutFree": {
+    "peanut_free": {
         "0": true
     },
-    "ingerdientList": {
+    "ingredientList": {
         "0": [
             {
-                "recipyKey": [
+                "recipy_key": [
                     10110,
                     10110,
                     10110,
@@ -87,7 +87,7 @@
                     10110,
                     10110
                 ],
-                "ingredientKey": [
+                "ingredient_key": [
                     10078,
                     10079,
                     10080,
@@ -153,7 +153,7 @@
     "ingredientInformation": {
         "0": [
             {
-                "ingredientKey": [
+                "ingredient_key": [
                     10078,
                     10079,
                     10080,
