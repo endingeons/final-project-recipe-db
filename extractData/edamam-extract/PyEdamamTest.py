@@ -2,15 +2,18 @@ from py_edamam import PyEdamam
 from secretKeys import appId, appKey
 import pandas as pd
 
+import json
+import time as t
+
 e = PyEdamam(recipes_appid=appId,
            recipes_appkey=appKey)
 
 # Test Loop through data to get information from a single recipe.
-def getFoodInfo(search, df_recipeBook, ingredientNum):
+def getFoodInfo(search, df_recipeBook, recipyKey, ingredientKey):
   for recipe in e.search_recipe(search):
-    #print(recipe)
+    #print(recipe)  
     
-    ingredientNum = ingredientNum + 1
+    recipyKey = recipyKey + 1
     website = recipe.url
     image = recipe.image
     recipeTitle = recipe.label
@@ -70,12 +73,11 @@ def getFoodInfo(search, df_recipeBook, ingredientNum):
         isGlutenFree = True
       elif restrict == 'Peanut-Free':
         isPeanutFree = True
-
-    ingredientNames = recipe.ingredient_names
-    ingredientQuantities = recipe.ingredient_quantities
     
+    ingredientQuantities = recipe.ingredient_quantities
+
     # make a dictionary
-    df_recipe = {'ingredientNum':[],
+    df_recipe = {'recipyKey':[],
                  'recipeTitle':[],
                  'recipeSearch_Used':[],
                  'website':[],
@@ -88,7 +90,7 @@ def getFoodInfo(search, df_recipeBook, ingredientNum):
                  'fat':[],
                  'satFat':[],
                  'protein':[],
-                 'cholesterol':[],
+                 'cholesterol':[], 
                  'sodium':[],
                  'carbs':[],
                  'sugar':[],
@@ -100,11 +102,21 @@ def getFoodInfo(search, df_recipeBook, ingredientNum):
                  'isGlutenFree':[],
                  'isPeanutFree':[],
                  
-                 'ingredientNames':[],
-                 'ingredientQuantities':[]}
-    
+                 'ingredientList':[],
+                 'ingredientInformation':[]}
+
+    ingredientList = {'recipyKey':[],
+                      'ingredientKey':[],
+                      'value': [],
+                      'unit':[]}
+
+    ingredientInformation = {'ingredientKey':[],
+                             'name':[],
+                             'category':[],
+                             'price':[]}
+
     # populate dictionary
-    df_recipe['ingredientNum'].append(ingredientNum)
+    df_recipe['recipyKey'].append(recipyKey)
     df_recipe['recipeTitle'].append(recipeTitle)
     df_recipe['recipeSearch_Used'].append(search)
     df_recipe['website'].append(website)
@@ -128,32 +140,52 @@ def getFoodInfo(search, df_recipeBook, ingredientNum):
     df_recipe['isDairyFree'].append(isDairyFree)
     df_recipe['isGlutenFree'].append(isGlutenFree)
     df_recipe['isPeanutFree'].append(isPeanutFree)
-  
-    df_recipe['ingredientNames'].append([ingredientNames])
-    df_recipe['ingredientQuantities'].append([ingredientQuantities])
+    
+    for idx, ingredient in enumerate(ingredientQuantities):
+      ingredientList['recipyKey'].append(recipyKey)
+      ingredientList['ingredientKey'].append(ingredientKey)
+      ingredientList['value'].append(ingredient['quantity'])
+      ingredientList['unit'].append(ingredient['measure'])
+      
+      ingredientInformation['ingredientKey'].append(ingredientKey)
+      ingredientInformation['name'].append(ingredient['text'])
+      ingredientInformation['category'].append(ingredient['foodCategory'])
+      ingredientInformation['price'].append(-1)
+
+      ingredientKey = ingredientKey + 1
+
+    df_recipe['ingredientList'].append([ingredientList])
+    df_recipe['ingredientInformation'].append([ingredientInformation])
    
     df_recipe = pd.DataFrame(df_recipe)
     #df_recipe.to_csv("C:\\Users\\PC\\code\\githubProjects\\final-project-recipe-db\\testing1.csv", index=False)
     
     df_recipeBook = df_recipeBook.append(df_recipe)
-    
-    
 
-  return df_recipeBook, ingredientNum
-
+  return df_recipeBook, recipyKey
 
 # list of foods
 PATH = "C:\\Users\\PC\\code\\githubProjects\\final-project-recipe-db\\data.csv"
-listOfFoods = ['Chicken Parmesan', 'Cheeseburger', 'Ham', 'Scrambled Eggs', 'Egg Sandwich', 'Bread', 'Pizza', 'Pasta', 'Sweet Tea', 'Tacos', 'Nachos']
+listOfFoods = ['Tacos', 'Chicken Parmesan', 'Cheeseburger', 'Ham', 'Scrambled Eggs', 'Egg Sandwich', 'Bread', 'Pizza', 'Pasta', 'Sweet Tea', 'Nacho']
 df =  pd.DataFrame()
 
 # used a large number so i dont overlap with Chelsea
-ingredientNum = 10000
+recipyKey = 10000
+ingredientKey = 10000
 
 for food in listOfFoods:
-  df, ingredientNum = getFoodInfo(food, df, ingredientNum)
+  df, recipyKey = getFoodInfo(food, df, recipyKey, ingredientKey)
   print('Search Complete: ' + food)
-  print(ingredientNum)
+  print(recipyKey)
+
+  # used to not overwhelm server
+  t.sleep(10)
   print()
+
+
+df_dict = df.to_dict()
+
+with open("C:\\Users\\PC\\code\\githubProjects\\final-project-recipe-db\\data.json", "w") as write_file:
+    json.dump(df_dict, write_file, indent=4)
 
 df.to_csv(PATH, index=False)
