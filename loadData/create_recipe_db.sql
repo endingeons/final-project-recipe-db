@@ -15,7 +15,8 @@ vegetarian 		BOOL		NOT NULL,
 pescatarian     BOOL        NOT NULL,
 vegan 	    	BOOL		NOT NULL,
 gluten_free 	BOOL		NOT NULL,
-dairy_free 	    BOOL		NOT NULL
+dairy_free 	    BOOL		NOT NULL,
+peanut_free     BOOL        NOT NULL
 );
 
 CREATE TABLE users(
@@ -27,7 +28,8 @@ vegetarian 		BOOL		NOT NULL,
 pescatarian		BOOL		NOT NULL,
 vegan 	    	BOOL		NOT NULL,
 gluten_free 	BOOL		NOT NULL,
-dairy_free 	    BOOL		NOT NULL
+dairy_free 	    BOOL		NOT NULL,
+peanut_free     BOOL        NOT NULL
 );
 
 CREATE TABLE ingredient_information(

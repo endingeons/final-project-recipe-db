@@ -1,28 +1,16 @@
 import mysql.connector
 from mysql.connector import Error
 import pandas as pd
-from getAPIDataJson import *
 
-def insert_data_from_json(connection, jsonData, apiFormat):
-    # Try to read json data
-    if apiFormat == 'edamam':
-        # Blank
-    elif apiFormat == 'spoonacular':
-        # Blank
-    else:
-        print('Incorrect API Format Provided.')
-        return -1
-
-    recipes = []
-
+def insert_data_from_json(connection, recipes, apiFormat):
     # Start adding recipes, going one by one
     for r in recipes:
         ingredient_list_vals = []
 
         # recipe_key(AUTO), url, title, serving_size, category, total_time_minutes,
-        # vegetarian, pescatarian, vegan, gluten_free, dairy_free
+        # vegetarian, pescatarian, vegan, gluten_free, dairy_free, peanut_free
         recipe_vals = [(r.url, r.title, r.serving_size, r.category, r.total_time_minutes,
-                        r.vegetarian, r.pescatarian, r.vegan, r.gluten_free, r.dairy_free)]
+                        r.vegetarian, r.pescatarian, r.vegan, r.gluten_free, r.dairy_free, r.peanut_free)]
         curr_recipe_id = execute_list_query(connection, pop_recipes(), recipe_vals)
 
         # recipe_nutrition_key(AUTO), recipe_key, fats, saturated_fats, protein, cholesterol, sugar, sodium
@@ -43,9 +31,6 @@ def insert_data_from_json(connection, jsonData, apiFormat):
         # list_key(AUTO), recipe_key, ingredient_key, amount, unit
         execute_list_query(connection, pop_ingredient_list(), ingredient_list_vals)
 
-
-
-
 def pop_recipe_nutrition():
     sql = """
         INSERT INTO recipe_nutrition (recipe_key, fats, saturated_fats, protein, cholesterol, sugar, sodium)
@@ -56,8 +41,8 @@ def pop_recipe_nutrition():
 def pop_recipes():
     sql = """
             INSERT INTO recipes (url, title, serving_size, category, total_time_minutes, 
-                                 vegetarian, pescatarian, vegan, gluten_free, dairy_free)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+                                 vegetarian, pescatarian, vegan, gluten_free, dairy_free, peanut_free)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
         """
     return sql
 
