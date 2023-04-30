@@ -12,6 +12,7 @@ serving_size 		DECIMAL(5, 2)		NOT NULL,
 category			VARCHAR(45)		NOT NULL,
 total_time_minutes 	INT		NOT NULL,
 vegetarian 		BOOL		NOT NULL,
+pescatarian     BOOL        NOT NULL,
 vegan 	    	BOOL		NOT NULL,
 gluten_free 	BOOL		NOT NULL,
 dairy_free 	    BOOL		NOT NULL
