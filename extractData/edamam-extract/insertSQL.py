@@ -6,7 +6,7 @@ mydb = mysql.connector.connect(
   host=secretKeys.sqlHost,
   user=secretKeys.sqlID,
   password=secretKeys.sqlPass,
-  database="recipy"
+  database="recipy" 
 )
 
 mycursor = mydb.cursor()
