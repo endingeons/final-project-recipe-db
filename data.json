@@ -1,0 +1,239 @@
+{
+    "recipy_key": {
+        "0": 10110
+    },
+    "title": {
+        "0": "Nacho Cheese Sauce"
+    },
+    "recipeSearch_Used": {
+        "0": "Nacho"
+    },
+    "url": {
+        "0": "https://food52.com/recipes/20517-nacho-cheese-sauce"
+    },
+    "image": {
+        "0": "https://edamam-product-images.s3.amazonaws.com/web-img/146/14632605cda6d1543a93c08e42ae4499.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHEaCXVzLWVhc3QtMSJIMEYCIQDnNwSkBKeZlJTsBofb0n5GCo%2Fq37Ea505uwcxIwTj8DAIhAIiz8P0uSSmJAbxzawteuBIEPC8cw9KhreWckOhxMyV7KrkFCHoQABoMMTg3MDE3MTUwOTg2Igw%2BOQwjUmuyoUho3j0qlgVyvqiI6rycFqlzMVmlenDYPW5ghfziv7upk6FjW05VJ%2FAPApkXJYOfAZY0tFOhBcgJLJA5fv%2Bad7wEHPpNmRIjELo73iHGypl4ZvUvwapntT%2FJkDctiaFuG2nTRMpTq12tvxwhobmEoeeqb7QEjnRyW6oGTD%2FE%2FLM%2FBMOfepksCGTCj0ri5vUQsQdAilxj18uPn82gJltEVgoDqklzpyqRktaU2GiOvj7WMiGP9oAX6TFpYj%2F8dWZxyAyk20Os2KCEVSdvMZQZ%2FtVv4%2BylLq5Lz1mCT%2F27Ysmn1ADMs%2BHp1iKoyq%2BjUgMCpZzW1s93D1Pg2YuGOoIQPEb9b5AvEqB9E5d1NY7cdJUPvPPXiNIJnK16N5CvFhH8c4R66qo%2BZYdbYRdIgSJCZMi%2F1d6FFd14Jiyfy0JLegMwyHIN1334u%2BD2Kiu86yvbscYQHugzbuOS%2BCciwA2wEMba9JRCSKLSDx3Dek0U74gHtRqd%2FxD95xOZ5auB4qkoONKLn4IBHLMt%2FH9pSWMKIYLI6MLKaa7E1Ap2vn%2FMnYFTIST7ehKYkqyKoxivXoMk8Lnj2IkaVXSJfcQQ6Yu8Ot%2BQDgqSmZrCYHyLZX4Wqw2IDRbVoi7iFmTuLWPY83AmQsJvXu34aJIhvwHR%2FWAQiJUvKUEtn4UZ2vb9Kmy7N7yD%2FKmC9xCfltldjJFuHwIwTQQMR%2FjlWHaFLy9b9UTATQLVh8CRU%2FgNjCnB8VkD4kcnzlw7UT5qH8bptAEan8DtsDe5ZlBfxKEXcf6aCgPi%2FMeG2TZ2vFLRB7MUGUcqUa2JH%2F6me1Kff7EqpCOmGKT%2BEEms61j00NUkJCXoBRGnNkFeO6MVDZiOypjLwZt5f1fYGYHfLT6qS7HklBOVMzCbkLWiBjqwAUZu3viM2vWlBrmGwA0tS3e7cV1LnguouKkOjpMHVh1z4dJukJ2Mol3XmQRo0r0jshxZ96k%2BnfEJSF4jTc6tLfD2mjrHXOKkKNG2KLnZdUrz9OLwakUhwf3%2BF8kqrjPMet4%2FvNdKMX8tTleR4SZS6TJFEPM1%2Flee1IE0weUefyGyw6HqdhpB82LygcDNGM67cCjSoHSBagVUEBb001O2BfSifCFrL4uSMKbwwrVGzSmK&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230429T173810Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFKNAQ5PEX%2F20230429%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=7f110e7baa5b6f724baf7bad6cbbf9dfc37bcbe11415adc47cf89db30eaec7d9"
+    },
+    "category": {
+        "0": [
+            "american"
+        ]
+    },
+    "calories": {
+        "0": 1249.8296750796105
+    },
+    "total_time_minutes": {
+        "0": 0.0
+    },
+    "fat": {
+        "0": 172.27282530187586
+    },
+    "satFat": {
+        "0": 317.193750500979
+    },
+    "protein": {
+        "0": 55.5609457043589
+    },
+    "cholesterol": {
+        "0": 104.96071705416666
+    },
+    "sodium": {
+        "0": 67.21284152294086
+    },
+    "carbs": {
+        "0": 12.02807060732836
+    },
+    "sugar": {
+        "0": 63.43875010019579
+    },
+    "vegan": {
+        "0": false
+    },
+    "vegetarian": {
+        "0": true
+    },
+    "pescatarian": {
+        "0": true
+    },
+    "dairy_free": {
+        "0": false
+    },
+    "gluten_free": {
+        "0": false
+    },
+    "peanut_free": {
+        "0": true
+    },
+    "ingredientList": {
+        "0": [
+            {
+                "recipy_key": [
+                    10110,
+                    10110,
+                    10110,
+                    10110,
+                    10110,
+                    10110,
+                    10110,
+                    10110,
+                    10110,
+                    10110,
+                    10110,
+                    10110,
+                    10110,
+                    10110,
+                    10110,
+                    10110,
+                    10110,
+                    10110
+                ],
+                "ingredient_key": [
+                    10078,
+                    10079,
+                    10080,
+                    10081,
+                    10082,
+                    10083,
+                    10084,
+                    10085,
+                    10086,
+                    10087,
+                    10088,
+                    10089,
+                    10090,
+                    10091,
+                    10092,
+                    10093,
+                    10094,
+                    10095
+                ],
+                "value": [
+                    3.0,
+                    2.0,
+                    2.0,
+                    2.0,
+                    0.25,
+                    0.25,
+                    0.25,
+                    2.0,
+                    0.5,
+                    1.0,
+                    2.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.25,
+                    0.25,
+                    1.5
+                ],
+                "unit": [
+                    "tablespoon",
+                    "tablespoon",
+                    "tablespoon",
+                    "tablespoon",
+                    "teaspoon",
+                    "teaspoon",
+                    "teaspoon",
+                    "tablespoon",
+                    "cup",
+                    "cup",
+                    "ounce",
+                    "tablespoon",
+                    null,
+                    null,
+                    "teaspoon",
+                    "cup",
+                    "cup",
+                    "<unit>"
+                ]
+            }
+        ]
+    },
+    "ingredientInformation": {
+        "0": [
+            {
+                "ingredient_key": [
+                    10078,
+                    10079,
+                    10080,
+                    10081,
+                    10082,
+                    10083,
+                    10084,
+                    10085,
+                    10086,
+                    10087,
+                    10088,
+                    10089,
+                    10090,
+                    10091,
+                    10092,
+                    10093,
+                    10094,
+                    10095
+                ],
+                "name": [
+                    "3 tablespoons unsalted butter",
+                    "2 tablespoons onion, minced",
+                    "2 tablespoons green chile, chopped",
+                    "2 tablespoons tomato, seeded and finely chopped",
+                    "1/4 teaspoon ground turmeric",
+                    "1/4 teaspoon paprika",
+                    "1/4 teaspoon cayenne pepper",
+                    "2 tablespoons all purpose flour (or gf flour mix)",
+                    "1/2 cup heavy cream",
+                    "1 cup buttermilk",
+                    "2 ounces Monterey Jack cheese",
+                    "1 tablespoon olive oil",
+                    "salt and pepper to taste",
+                    "salt and pepper to taste",
+                    "1 teaspoon salt",
+                    "1/4 cup water",
+                    "1/4 cup apple cider vinegar",
+                    "1 or 2 jalapenos"
+                ],
+                "category": [
+                    "Dairy",
+                    "vegetables",
+                    "vegetables",
+                    "vegetables",
+                    "Condiments and sauces",
+                    "Condiments and sauces",
+                    "Condiments and sauces",
+                    "grains",
+                    "Dairy",
+                    "Milk",
+                    "Cheese",
+                    "Oils",
+                    "Condiments and sauces",
+                    "Condiments and sauces",
+                    "Condiments and sauces",
+                    "water",
+                    "Condiments and sauces",
+                    "vegetables"
+                ],
+                "price": [
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1,
+                    -1
+                ]
+            }
+        ]
+    }
+}
