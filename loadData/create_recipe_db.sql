@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS recipes;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS ingredient_list;
 DROP TABLE IF EXISTS recipe_nutrition;
 DROP TABLE IF EXISTS ingredient_information;
+DROP TABLE IF EXISTS recipes;
 
 CREATE TABLE recipes(
 recipe_key			INT				PRIMARY KEY		AUTO_INCREMENT,
