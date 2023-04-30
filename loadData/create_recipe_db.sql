@@ -10,7 +10,11 @@ url					VARCHAR(80)		NOT NULL,
 title 				VARCHAR(80)		NOT NULL,
 serving_size 		DECIMAL(5, 2)		NOT NULL,
 category			VARCHAR(45)		NOT NULL,
-total_time_minutes 	INT		NOT NULL
+total_time_minutes 	INT		NOT NULL,
+vegetarian 		BOOL		NOT NULL,
+vegan 	    	BOOL		NOT NULL,
+gluten_free 	BOOL		NOT NULL,
+dairy_free 	    BOOL		NOT NULL
 );
 
 CREATE TABLE users(
@@ -19,6 +23,7 @@ recipe_key	INT		NOT NULL,
 CONSTRAINT fk_recipe_key_users FOREIGN KEY (recipe_key) 
 	REFERENCES recipes (recipe_key), 
 vegetarian 		BOOL		NOT NULL,
+pescatarian		BOOL		NOT NULL,
 vegan 	    	BOOL		NOT NULL,
 gluten_free 	BOOL		NOT NULL,
 dairy_free 	    BOOL		NOT NULL
