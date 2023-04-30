@@ -26,8 +26,8 @@ def insert_data_from_json(connection, data, apiFormat):
         ingredients = d[1]
         num_ingredients = len(ingredients['ingredient_name'])
         for idx in range(0, num_ingredients):
-            i = ingredients[idx]
-
+            i = {k: v[idx] for (k, v) in ingredients.items()}
+            
             # ingredient_key(AUTO), ingredient_name, category, price
             ingredient_information_vals = [(i['ingredient_name'], i['category'], i['price'])]
             curr_ingredient_id = execute_list_query(connection, pop_ingredient_information(),
