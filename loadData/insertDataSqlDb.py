@@ -1,0 +1,98 @@
+import mysql.connector
+from mysql.connector import Error
+import pandas as pd
+from getAPIDataJson import *
+
+def insert_data_from_json(connection, jsonData, apiFormat):
+    # Try to read json data
+    if apiFormat == 'edamam':
+        # Blank
+    elif apiFormat == 'spoonacular':
+        # Blank
+    else:
+        print('Incorrect API Format Provided.')
+        return -1
+
+    recipes = []
+
+    # Start adding recipes, going one by one
+    for r in recipes:
+        ingredient_list_vals = []
+
+        # recipe_key(AUTO), url, title, serving_size, category, total_time_minutes,
+        # vegetarian, pescatarian, vegan, gluten_free, dairy_free
+        recipe_vals = [(r.url, r.title, r.serving_size, r.category, r.total_time_minutes,
+                        r.vegetarian, r.pescatarian, r.vegan, r.gluten_free, r.dairy_free)]
+        curr_recipe_id = execute_list_query(connection, pop_recipes(), recipe_vals)
+
+        # recipe_nutrition_key(AUTO), recipe_key, fats, saturated_fats, protein, cholesterol, sugar, sodium
+        recipe_nutrition_vals = [(curr_recipe_id, r.fats, r.saturated_fats,
+                                  r.protein, r.cholesterol, r.sugar, r.sodium)]
+        execute_list_query(connection, pop_recipe_nutrition(), recipe_nutrition_vals)
+
+
+
+        for i in r.ingredients:
+
+            # ingredient_key(AUTO), ingredient_name, category, price
+            ingredient_information_vals = [(i.ingredient_name, i.category, i.price)]
+            curr_ingredient_id = execute_list_query(connection, pop_ingredient_information(), ingredient_information_vals)
+
+            ingredient_list_vals = ingredient_list_vals + [(curr_recipe_id, curr_ingredient_id, i.amount, i.unit)]
+
+        # list_key(AUTO), recipe_key, ingredient_key, amount, unit
+        execute_list_query(connection, pop_ingredient_list(), ingredient_list_vals)
+
+
+
+
+def pop_recipe_nutrition():
+    sql = """
+        INSERT INTO recipe_nutrition (recipe_key, fats, saturated_fats, protein, cholesterol, sugar, sodium)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+    """
+    return sql
+
+def pop_recipes():
+    sql = """
+            INSERT INTO recipes (url, title, serving_size, category, total_time_minutes, 
+                                 vegetarian, pescatarian, vegan, gluten_free, dairy_free)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+        """
+    return sql
+
+def pop_ingredient_list():
+    sql = """
+            INSERT INTO ingredient_list (recipe_key, ingredient_key, amount, unit)
+            VALUES (%s, %s, %s, %s)
+        """
+    return sql
+
+def pop_ingredient_information():
+    sql = """
+            INSERT INTO ingredient_information (ingredient_name, category, price)
+            VALUES (%s, %s, %s)
+        """
+    return sql
+
+def execute_query(connection, query):
+    # https://www.freecodecamp.org/news/connect-python-with-sql/
+    cursor = connection.cursor()
+    try:
+        cursor.execute(query)
+        connection.commit()
+        print("Query successful")
+    except Error as err:
+        print(f"Error: '{err}'")
+
+def execute_list_query(connection, sql, val):
+    # https://www.freecodecamp.org/news/connect-python-with-sql/
+    cursor = connection.cursor()
+    try:
+        cursor.executemany(sql, val)
+        connection.commit()
+        cursor.execute('SELECT LAST_INSERT_ID()')
+        print("Query successful")
+        return cursor.fetchall()
+    except Error as err:
+        print(f"Error: '{err}'")
