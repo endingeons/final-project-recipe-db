@@ -47,6 +47,39 @@ def parseEdamam(jsonData):
 
     return recipes_list
 
-def parseSpoonacular(data):
-    print('this doesn''t do anything yet')
-    return []
+def parseSpoonacular(jsonData):
+    recipes_list = []
+
+    for data in jsonData:
+        nutrients = data['nutrition']['nutrients']
+
+        recipe_dict = {'url': data['spoonacularSourceUrl'],
+                       'title': data['title'],
+                       'serving_size': data['servings'],
+                       'category': data['cuisines'],
+                       'total_time_minutes': data['readyInMinutes'],
+                       'vegetarian': data['vegetarian'],
+                       'vegan': data['vegan'],
+                       'pescatarian': 'UNKNOWN',
+                       'vegan': data['vegan'],
+                       'gluten_free': data['glutenFree'],
+                       'dairy_free': data['dairyFree'],
+                       'peanut_free': 'UNKNOWN',
+                       'fats': nutrients['Fat']['percentOfDailyNeeds'],
+                       'saturated_fats': nutrients['Saturated Fat']['percentOfDailyNeeds'],
+                       'protein': nutrients['Protein']['percentOfDailyNeeds'],
+                       'cholesterol': nutrients['Cholesterol']['percentOfDailyNeeds'],
+                       'sugar': nutrients['Sugar']['percentOfDailyNeeds'],
+                       'sodium': nutrients['Sodium']['percentOfDailyNeeds']}
+
+        ingredientInformation = data['extendedIngredients']
+
+        ingredient_dict = {'ingredient_name': [x['name'] for x in ingredientInformation],
+                           'category': [x['aisle'] for x in ingredientInformation],
+                           'price': -1,
+                           'amount': [x['amount'] for x in ingredientInformation],
+                           'unit': [x['unit'] if x['unit'] else 'UNKNOWN' for x in ingredientInformation]}
+
+    recipes_list = recipes_list + [(recipe_dict, ingredient_dict)]
+
+    return recipes_list
