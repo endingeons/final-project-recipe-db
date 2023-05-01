@@ -28,4 +28,5 @@ def close_local_sql_db(connection):
     connection.close()
 
 def close_aws_sql_db(connection):
-    # something
+    # something 
+    print('test')

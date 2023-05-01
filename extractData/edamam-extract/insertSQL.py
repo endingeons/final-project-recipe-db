@@ -1,5 +1,4 @@
 import mysql.connector
-
 import secretKeys
 
 mydb = mysql.connector.connect(

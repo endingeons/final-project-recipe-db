@@ -1,6 +1,6 @@
 from py_edamam import PyEdamam
 from secretKeys import appId, appKey
-import pandas as pd
+#import pandas as pd
 
 import json
 import time as t
@@ -9,11 +9,11 @@ e = PyEdamam(recipes_appid=appId,
            recipes_appkey=appKey)
 
 # Test Loop through data to get information from a single recipe.
-def getFoodInfo(search, df_recipe, ingredientList, ingredientInformation, recipyKey, ingredientKey):
+def getFoodInfo(search, df_recipe, ingredientList, ingredientInformation, recipeKey, ingredientKey):
   for recipe in e.search_recipe(search):
     #print(recipe)  
     
-    recipyKey = recipyKey + 1
+    recipeKey = recipeKey + 1
     website = recipe.url
     image = recipe.image
     recipeTitle = recipe.label
@@ -77,7 +77,7 @@ def getFoodInfo(search, df_recipe, ingredientList, ingredientInformation, recipy
     ingredientQuantities = recipe.ingredient_quantities
 
     # populate dictionary
-    df_recipe['recipy_key'].append(recipyKey)
+    df_recipe['recipe_key'].append(recipeKey)
     df_recipe['title'].append(recipeTitle)
     df_recipe['recipeSearch_Used'].append(search)
     df_recipe['url'].append(website)
@@ -103,13 +103,13 @@ def getFoodInfo(search, df_recipe, ingredientList, ingredientInformation, recipy
     df_recipe['peanut_free'].append(peanut_free)
     
     for idx, ingredient in enumerate(ingredientQuantities):
-      ingredientList['recipy_key'].append(recipyKey)
+      ingredientList['recipe_key'].append(recipeKey)
       ingredientList['ingredient_key'].append(ingredientKey)
       ingredientList['value'].append(ingredient['quantity'])
       ingredientList['unit'].append(ingredient['measure'])
       
       ingredientInformation['ingredient_key'].append(ingredientKey)
-      ingredientInformation['name'].append(ingredient['text'])
+      ingredientInformation['name'].append(filterRecipe(ingredient['text']))
       ingredientInformation['category'].append(ingredient['foodCategory'])
       ingredientInformation['price'].append(-1)
 
@@ -123,7 +123,47 @@ def getFoodInfo(search, df_recipe, ingredientList, ingredientInformation, recipy
     
     #df_recipeBook = df_recipeBook.append(df_recipe)
 
-  return df_recipe, recipyKey
+  return df_recipe, recipeKey
+
+def filterRecipe(text):
+  remove_list = ['½', '¼', '¾', '1','2','3','4','5','6','7','8','9','0', 'ml', 'teaspoon', 'teaspoons', 
+                 '/', 'tablespoon', 'tablespoons', 'cup', '-', 'Tbsp', 'tbsp', 'ounce', 'ounces', '\\u00bd',
+                 'pound', '\\u00be', '\\u00bc', 'lb.', 'lb', 'tsp.', 'tsp', 'tbsp.', 'slices', 'handful', 'oz', 
+                 'oz.', ' s ', ' g ', '(', ')', '*', '+', '.', '–', ' x ', '%', 'inch', 'cm']
+
+  for delete in remove_list:
+    if delete in text:
+      text = text.replace(delete, '')
+
+  while text[0] == " ":
+    text = text[1:len(text)]
+  
+  return text
+
+''' DELETE
+  # find whitespace
+  for idx, letter in enumerate(text):
+    if letter == ' ':
+      whitespace.append(idx)
+  
+  for idx, nothing in enumerate(whitespace):
+    # use for end
+    if idx == len(whitespace)-1:
+      if not text[whitespace[idx]:len(text)] in remove:
+        new_text = new_text + text[whitespace[idx]:len(text)]
+      break
+
+    # use for beginning
+    if idx == 0 and not text[0:whitespace[idx]] in remove:
+      new_text = text[0:whitespace[idx]]
+
+    # use for middle
+    if not text[whitespace[idx]+1:whitespace[idx+1]] in remove:
+      new_text = new_text + text[whitespace[idx]+1:whitespace[idx+1]]
+
+  if new_text[0] == " ":
+    new_text = new_text[1:len(text)]
+  '''
 
 # list of foods
 PATH = "C:\\Users\\PC\\code\\githubProjects\\final-project-recipe-db\\data.csv"
@@ -132,11 +172,11 @@ listOfFoods = ['Tacos', 'Chicken Parmesan', 'Cheeseburger', 'Ham', 'Scrambled Eg
 df = []
 
 # used a large number so i dont overlap with Chelsea
-recipyKey = 10000
+recipeKey = 10000
 ingredientKey = 10000
 
 # make a dictionary
-df_recipe = {'recipy_key':[],
+df_recipe = {'recipe_key':[],
               'title':[],
               'recipeSearch_Used':[],
               'url':[],
@@ -164,7 +204,7 @@ df_recipe = {'recipy_key':[],
               'ingredientList':[],
               'ingredientInformation':[]}
 
-ingredientList = {'recipy_key':[],
+ingredientList = {'recipe_key':[],
                   'ingredient_key':[],
                   'value': [],
                   'unit':[]}
@@ -175,9 +215,9 @@ ingredientInformation = {'ingredient_key':[],
                           'price':[]}
 
 for food in listOfFoods:
-  df_recipe, recipyKey = getFoodInfo(food, df_recipe, ingredientList, ingredientInformation, recipyKey, ingredientKey)
+  df_recipe, recipeKey = getFoodInfo(food, df_recipe, ingredientList, ingredientInformation, recipeKey, ingredientKey)
   print('Search Complete: ' + food)
-  print(recipyKey)
+  print(recipeKey)
 
   # used to not overwhelm server
   t.sleep(5)
