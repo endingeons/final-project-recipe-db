@@ -25,7 +25,7 @@ spoon_df = parseSpoonacular(jsonObjectSpoon)
 connection = connect_local_sql_db()
 
 # Create database if it doesn't exist
-
+# TODO call create recipe db .sql script
 
 # Insert Data
 insert_data_from_json(connection, edamam_df)

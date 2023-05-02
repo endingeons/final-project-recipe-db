@@ -2,7 +2,8 @@ import mysql.connector
 from mysql.connector import Error
 import pandas as pd
 
-def insert_data_from_json(connection, data, apiFormat):
+def insert_data_from_json(connection, data):
+    print('Starting to insert data into SQL db')
     # Start adding recipes, going one by one through list of tuples
     # Looks like := [tuple, tuple, tuple]
     # Each tuple is := (recipe_dict, ingredient_dict)
@@ -30,6 +31,7 @@ def insert_data_from_json(connection, data, apiFormat):
 
             # ingredient_key(AUTO), ingredient_name, category, price
             ingredient_information_vals = [(i['ingredient_name'], i['category'], i['price'])]
+
             curr_ingredient_id = execute_list_query(connection, pop_ingredient_information(),
                                                     ingredient_information_vals)
 
@@ -38,6 +40,7 @@ def insert_data_from_json(connection, data, apiFormat):
 
         # list_key(AUTO), recipe_key, ingredient_key, amount, unit
         execute_list_query(connection, pop_ingredient_list(), ingredient_list_vals)
+    print('Done!')
 
 def pop_recipe_nutrition():
     sql = """
