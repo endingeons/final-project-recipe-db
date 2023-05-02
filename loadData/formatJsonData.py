@@ -50,7 +50,7 @@ def parseSpoonacular(jsonData):
         recipe_dict = {'url': data['spoonacularSourceUrl'],
                        'title': data['title'],
                        'serving_size': data['servings'],
-                       'category': data['cuisines'],
+                       'category': 'None', # TODO: Not populating w/ api for some reason. data['cuisines'],
                        'total_time_minutes': data['readyInMinutes'],
                        'vegetarian': data['vegetarian'],
                        'vegan': data['vegan'],
