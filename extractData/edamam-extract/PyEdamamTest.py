@@ -9,7 +9,7 @@ e = PyEdamam(recipes_appid=appId,
            recipes_appkey=appKey)
 
 # Test Loop through data to get information from a single recipe.
-def getFoodInfo(search, df_recipe, ingredientList, ingredientInformation, recipeKey, ingredientKey):
+def getFoodInfo(search, df_recipe, recipeKey, ingredientKey):
   for recipe in e.search_recipe(search):
     #print(recipe)  
     
@@ -102,6 +102,16 @@ def getFoodInfo(search, df_recipe, ingredientList, ingredientInformation, recipe
     df_recipe['gluten_free'].append(gluten_free)
     df_recipe['peanut_free'].append(peanut_free)
     
+    ingredientList = {'recipe_key':[],
+                  'ingredient_key':[],
+                  'value': [],
+                  'unit':[]}
+
+    ingredientInformation = {'ingredient_key':[],
+                          'name':[],
+                          'category':[],
+                          'price':[]}
+
     for idx, ingredient in enumerate(ingredientQuantities):
       ingredientList['recipe_key'].append(recipeKey)
       ingredientList['ingredient_key'].append(ingredientKey)
@@ -140,7 +150,7 @@ def filterRecipe(text):
   
   return text
 
-''' DELETE
+''' old filter code
   # find whitespace
   for idx, letter in enumerate(text):
     if letter == ' ':
@@ -204,18 +214,8 @@ df_recipe = {'recipe_key':[],
               'ingredientList':[],
               'ingredientInformation':[]}
 
-ingredientList = {'recipe_key':[],
-                  'ingredient_key':[],
-                  'value': [],
-                  'unit':[]}
-
-ingredientInformation = {'ingredient_key':[],
-                          'name':[],
-                          'category':[],
-                          'price':[]}
-
 for food in listOfFoods:
-  df_recipe, recipeKey = getFoodInfo(food, df_recipe, ingredientList, ingredientInformation, recipeKey, ingredientKey)
+  df_recipe, recipeKey = getFoodInfo(food, df_recipe, recipeKey, ingredientKey)
   print('Search Complete: ' + food)
   print(recipeKey)
 
