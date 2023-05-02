@@ -1,3 +1,5 @@
+CREATE DATABASE [IF NOT EXISTS] recipe;
+
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS ingredient_list;
 DROP TABLE IF EXISTS recipe_nutrition;
