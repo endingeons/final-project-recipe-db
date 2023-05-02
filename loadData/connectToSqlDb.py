@@ -29,3 +29,4 @@ def close_local_sql_db(connection):
 
 def close_aws_sql_db(connection):
     print('this doesn''t do anything')
+
