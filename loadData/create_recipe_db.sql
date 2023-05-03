@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS recipes;
 
 CREATE TABLE recipes(
 recipe_key			INT				PRIMARY KEY		AUTO_INCREMENT,
-url					VARCHAR(80)		NOT NULL,
+url					VARCHAR(500)		NOT NULL,
 title 				VARCHAR(80)		NOT NULL,
 serving_size 		DECIMAL(5, 2)		NOT NULL,
 category			VARCHAR(45)		NOT NULL,
@@ -37,7 +37,7 @@ peanut_free     BOOL        NOT NULL
 
 CREATE TABLE ingredient_information(
 ingredient_key		INT	 PRIMARY KEY		AUTO_INCREMENT,
-ingredient_name 	VARCHAR(80)			NOT NULL,
+ingredient_name 	VARCHAR(200)			NOT NULL,
 category 	    	VARCHAR(80)			NOT NULL,
 price 	   			DECIMAL(5, 2)		NOT NULL
 );
@@ -59,11 +59,10 @@ recipe_nutrition_key	INT	 	PRIMARY KEY		AUTO_INCREMENT,
 recipe_key				INT		NOT NULL,
 CONSTRAINT fk_recipe_key_recipe_nutrition FOREIGN KEY (recipe_key) 
 	REFERENCES recipes (recipe_key), 
-fats 			DECIMAL(5, 2)	    NOT NULL,
-saturated_fats 	DECIMAL(5, 2)		NOT NULL,
-protein 		DECIMAL(5, 2)		NOT NULL,
-cholesterol 	DECIMAL(5, 2)		NOT NULL,
-sugar 	    	DECIMAL(5, 2)		NOT NULL,
-sodium 			DECIMAL(5, 2)		NOT NULL
+fats 			DECIMAL(6, 2)	    NOT NULL,
+saturated_fats 	DECIMAL(6, 2)		NOT NULL,
+protein 		DECIMAL(6, 2)		NOT NULL,
+cholesterol 	DECIMAL(6, 2)		NOT NULL,
+sugar 	    	DECIMAL(6, 2)		NOT NULL,
+sodium 			DECIMAL(6, 2)		NOT NULL
 );
-

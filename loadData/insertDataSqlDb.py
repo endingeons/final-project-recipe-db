@@ -12,6 +12,9 @@ def insert_data_from_json(connection, data):
         ingredient_list_vals = []
 
         print(r['title'])
+        
+        if r['title'] == "Nachos Supremo":
+            print('testing') 
 
         # recipe_key(AUTO), url, title, serving_size, category, total_time_minutes,
         # vegetarian, pescatarian, vegan, gluten_free, dairy_free, peanut_free
@@ -33,10 +36,17 @@ def insert_data_from_json(connection, data):
 
             # ingredient_key(AUTO), ingredient_name, category, price
             ingredient_information_vals = [(i['ingredient_name'], i['category'], i['price'])]
+  
+            if i['category'] == None:
+                i['category'] = 'asdf'
+            
+            if i['unit'] == None:
+                i['unit'] = 'adsf'
 
             curr_ingredient_id = execute_list_query(connection, pop_ingredient_information(),
                                                     ingredient_information_vals)
             curr_ingredient_id = curr_ingredient_id[0][0]
+          
             ingredient_list_vals = ingredient_list_vals + [(curr_recipe_id, curr_ingredient_id,
                                                             i['amount'], i['unit'])]
 
