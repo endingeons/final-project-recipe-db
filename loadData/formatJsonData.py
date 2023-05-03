@@ -20,7 +20,7 @@ def parseEdamam(jsonData):
                        'fats': jsonData['fat'][idx],
                        'saturated_fats': jsonData['satFat'][idx],
                        'protein': jsonData['protein'][idx],
-                       'cholesterol': 0, # TODO is this empty?
+                       'cholesterol': jsonData['cholesterol'][idx],
                        'sugar': jsonData['sugar'][idx],
                        'sodium': jsonData['sodium'][idx]}
 

@@ -18,7 +18,6 @@ def connect_local_sql_db():
 
     return connection
 
-
 def connect_aws_sql_db(connection):
     # something
     handle = 0
