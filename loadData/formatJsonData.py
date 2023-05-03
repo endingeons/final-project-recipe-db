@@ -1,39 +1,31 @@
 def parseEdamam(jsonData):
+    print('Trying to parse JSON file of Edamam data')
     # Returns list of tuples, where elements in tuples are dictionaries
-    recipe_keys = {'url', 'title', 'serving_size', 'category', 'total_time_minutes',
-                   'vegetarian', 'vegan', 'pescatarian', 'vegan', 'gluten_free',
-                   'dairy_free', 'peanut_free', 'fats', 'saturated_fats', 'protein', 'cholesterol',
-                   'sugar', 'sodium'}
-
-    ingredient_keys = {'ingredient_name', 'category', 'price', 'amount', 'unit'}
-
-    recipe_dict = {key: None for key in recipe_keys}
-    ingredient_dict = {key: None for key in ingredient_keys}
 
     recipes_list = []
-    
-    for data in jsonData:
-        recipe_dict = {'url': data['url']['0'],
-                       'title': data['title']['0'],
+    numRecipes = len(jsonData['title'])
+    for idx in range(0, numRecipes):
+        recipe_dict = {'url': jsonData['url'][idx],
+                       'title': jsonData['title'][idx],
                        'serving_size': 0, # TODO is this empty?
-                       'category': data['category']['0'],
-                       'total_time_minutes': data['total_time_minutes']['0'],
-                       'vegetarian': data['vegetarian']['0'],
-                       'vegan': data['vegan']['0'],
-                       'pescatarian': data['pescatarian']['0'],
-                       'vegan': data['vegan']['0'],
-                       'gluten_free': data['gluten_free']['0'],
-                       'dairy_free': data['dairy_free']['0'],
-                       'peanut_free': data['peanut_free']['0'],
-                       'fats': data['fat']['0'],
-                       'saturated_fats': data['satFat']['0'],
-                       'protein': data['protein']['0'],
+                       'category': jsonData['category'][idx],
+                       'total_time_minutes': jsonData['total_time_minutes'][idx],
+                       'vegetarian': jsonData['vegetarian'][idx],
+                       'vegan': jsonData['vegan'][idx],
+                       'pescatarian': jsonData['pescatarian'][idx],
+                       'vegan': jsonData['vegan'][idx],
+                       'gluten_free': jsonData['gluten_free'][idx],
+                       'dairy_free': jsonData['dairy_free'][idx],
+                       'peanut_free': jsonData['peanut_free'][idx],
+                       'fats': jsonData['fat'][idx],
+                       'saturated_fats': jsonData['satFat'][idx],
+                       'protein': jsonData['protein'][idx],
                        'cholesterol': 0, # TODO is this empty?
-                       'sugar': data['sugar']['0'],
-                       'sodium': data['sodium']['0']}
+                       'sugar': jsonData['sugar'][idx],
+                       'sodium': jsonData['sodium'][idx]}
 
-        ingredientInformation = data['ingredientInformation']['0'][0]
-        ingredientList = data['ingredientList']['0'][0]
+        ingredientInformation = jsonData['ingredientInformation'][idx][0]
+        ingredientList = jsonData['ingredientList'][idx][0]
     
         ingredient_dict = {'ingredient_name': ingredientInformation['name'],
                            'category': ingredientInformation['category'],
@@ -45,18 +37,20 @@ def parseEdamam(jsonData):
 
         recipes_list = recipes_list + [(recipe_dict, ingredient_dict)]
 
+    print('Done!')
     return recipes_list
 
 def parseSpoonacular(jsonData):
+    print('Trying to parse JSON file of Spoonacular data')
     recipes_list = []
 
-    for data in jsonData:
+    for data in jsonData['recipes']:
         nutrients = data['nutrition']['nutrients']
 
         recipe_dict = {'url': data['spoonacularSourceUrl'],
                        'title': data['title'],
                        'serving_size': data['servings'],
-                       'category': data['cuisines'],
+                       'category': 'None', # TODO: Not populating w/ api for some reason. data['cuisines'],
                        'total_time_minutes': data['readyInMinutes'],
                        'vegetarian': data['vegetarian'],
                        'vegan': data['vegan'],
@@ -65,21 +59,22 @@ def parseSpoonacular(jsonData):
                        'gluten_free': data['glutenFree'],
                        'dairy_free': data['dairyFree'],
                        'peanut_free': 'UNKNOWN',
-                       'fats': nutrients['Fat']['percentOfDailyNeeds'],
-                       'saturated_fats': nutrients['Saturated Fat']['percentOfDailyNeeds'],
-                       'protein': nutrients['Protein']['percentOfDailyNeeds'],
-                       'cholesterol': nutrients['Cholesterol']['percentOfDailyNeeds'],
-                       'sugar': nutrients['Sugar']['percentOfDailyNeeds'],
-                       'sodium': nutrients['Sodium']['percentOfDailyNeeds']}
+                       'fats': [x['percentOfDailyNeeds'] for x in nutrients if x['name'] == 'Fat'][0],
+                       'saturated_fats': [x['percentOfDailyNeeds'] for x in nutrients if x['name'] == 'Saturated Fat'][0],
+                       'protein': [x['percentOfDailyNeeds'] for x in nutrients if x['name'] == 'Protein'][0],
+                       'cholesterol': [x['percentOfDailyNeeds'] for x in nutrients if x['name'] == 'Cholesterol'][0],
+                       'sugar': [x['percentOfDailyNeeds'] for x in nutrients if x['name'] == 'Sugar'][0],
+                       'sodium': [x['percentOfDailyNeeds'] for x in nutrients if x['name'] == 'Sodium'][0]}
 
         ingredientInformation = data['extendedIngredients']
 
         ingredient_dict = {'ingredient_name': [x['name'] for x in ingredientInformation],
                            'category': [x['aisle'] for x in ingredientInformation],
-                           'price': -1,
+                           'price': [-1] * len(ingredientInformation),
                            'amount': [x['amount'] for x in ingredientInformation],
                            'unit': [x['unit'] if x['unit'] else 'UNKNOWN' for x in ingredientInformation]}
 
-    recipes_list = recipes_list + [(recipe_dict, ingredient_dict)]
+        recipes_list = recipes_list + [(recipe_dict, ingredient_dict)]
 
+    print('Done!')
     return recipes_list
