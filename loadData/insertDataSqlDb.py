@@ -12,9 +12,11 @@ def insert_data_from_json(connection, data):
         ingredient_list_vals = []
 
         print(r['title'])
-        
-        if r['title'] == "Nachos Supremo":
-            print('testing') 
+
+        if r['pescatarian'] == 'UNKNOWN':
+            r['pescatarian'] = -1
+        if r['peanut_free'] == 'UNKNOWN':
+            r['peanut_free'] = -1
 
         # recipe_key(AUTO), url, title, serving_size, category, total_time_minutes,
         # vegetarian, pescatarian, vegan, gluten_free, dairy_free, peanut_free
@@ -22,6 +24,7 @@ def insert_data_from_json(connection, data):
                         r['category'][0], r['total_time_minutes'],
                         r['vegetarian'], r['pescatarian'], r['vegan'], r['gluten_free'],
                         r['dairy_free'], r['peanut_free'])]
+
         curr_recipe_id = execute_list_query(connection, pop_recipes(), recipe_vals)
         curr_recipe_id = curr_recipe_id[0][0]
         # recipe_nutrition_key(AUTO), recipe_key, fats, saturated_fats, protein, cholesterol, sugar, sodium
@@ -33,15 +36,15 @@ def insert_data_from_json(connection, data):
         num_ingredients = len(ingredients['ingredient_name'])
         for idx in range(0, num_ingredients):
             i = {k: v[idx] for (k, v) in ingredients.items()}
+            
+            if i['category'] == None:
+                i['category'] = 'none'
+            
+            if i['unit'] == None:
+                i['unit'] = 'none'
 
             # ingredient_key(AUTO), ingredient_name, category, price
             ingredient_information_vals = [(i['ingredient_name'], i['category'], i['price'])]
-  
-            if i['category'] == None:
-                i['category'] = 'asdf'
-            
-            if i['unit'] == None:
-                i['unit'] = 'adsf'
 
             curr_ingredient_id = execute_list_query(connection, pop_ingredient_information(),
                                                     ingredient_information_vals)
