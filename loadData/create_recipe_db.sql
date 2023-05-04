@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS recipes;
 CREATE TABLE recipes(
 recipe_key          INT             PRIMARY KEY     AUTO_INCREMENT,
 url                 VARCHAR(500)    NOT NULL,
-title               VARCHAR(80)     NOT NULL,
+title               VARCHAR(150)    NOT NULL,
 serving_size        DECIMAL(5, 2)   NOT NULL,
 category            VARCHAR(45)     NOT NULL,
 total_time_minutes  INT     NOT NULL,
