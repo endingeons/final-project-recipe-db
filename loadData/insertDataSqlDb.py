@@ -58,10 +58,29 @@ def insert_data_from_json(connection, data):
 
     print('Done!')
 
+def create_sample_users(connection):
+    user_vals = [(True, False, False, True, False, False),
+                 (False, False, False, True, False, False),
+                 (True, False, False, False, False, False),
+                 (False, False, False, False, False, False)]
+    execute_list_query(connection, pop_users(), user_vals)
+
+    user_fav_recipe_vals = [(1, 1), (1, 2), (1, 3), (2, 3), (2, 30),
+                            (3, 5), (4, 10), (4, 11)]
+
+    execute_list_query(connection, pop_users(), user_fav_recipe_vals)
+
+def pop_users_fav_recipes():
+    sql = """
+            INSERT INTO users_fav_recipes (user_key, recipe_key)
+            VALUES (%s, %s)
+        """
+    return sql
+
 def pop_users():
     sql = """
-        INSERT INTO users (recipe_key, vegetarian, pescatarian, vegan, gluten_free, dairy_free, peanut_free)
-        VALUES (%s, %s, %s, %s, %s, %s, %s)
+        INSERT INTO users (vegetarian, pescatarian, vegan, gluten_free, dairy_free, peanut_free)
+        VALUES (%s, %s, %s, %s, %s, %s)
     """
     return sql
 

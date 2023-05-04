@@ -31,6 +31,9 @@ connection = connect_local_sql_db()
 insert_data_from_json(connection, edamam_df)
 insert_data_from_json(connection, spoon_df)
 
+# Create Users
+create_sample_users(connection)
+
 # Close connection
 # close_aws_sql_db(connection)
 close_local_sql_db(connection)
