@@ -23,16 +23,23 @@ peanut_free     BOOL        NOT NULL
 );
 
 CREATE TABLE users(
-user_key        INT             PRIMARY KEY     AUTO_INCREMENT,
-recipe_key      INT         NOT NULL,
-CONSTRAINT fk_recipe_key_users FOREIGN KEY (recipe_key) 
-    REFERENCES recipes (recipe_key), 
+user_key        INT         PRIMARY KEY        AUTO_INCREMENT,
 vegetarian      BOOL        NOT NULL,
 pescatarian     BOOL        NOT NULL,
 vegan           BOOL        NOT NULL,
 gluten_free     BOOL        NOT NULL,
 dairy_free      BOOL        NOT NULL,
 peanut_free     BOOL        NOT NULL
+);
+
+CREATE TABLE users_fav_recipes(
+	user_recipe_key   INT       PRIMARY KEY        AUTO_INCREMENT,
+	user_key          INT         NOT NULL,
+	recipe_key        INT         NOT NULL,
+    CONSTRAINT fk_recipe_key_users FOREIGN KEY (recipe_key) 
+    REFERENCES recipes (recipe_key), 
+    CONSTRAINT fk_key_users FOREIGN KEY (user_key) 
+    REFERENCES users (user_key)
 );
 
 CREATE TABLE ingredient_information(
