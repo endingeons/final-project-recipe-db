@@ -6,8 +6,8 @@ import json
 
 # Main script to read all json files and insert them into the database
 
-PATH_TO_EDAMAM_JSON = '..\\extractData\\edamam-extract\\data\\data.json'
-PATH_TO_SPOON_JSON = '..\\extractData\\spoonacular-extract\\data\\data.json'
+PATH_TO_EDAMAM_JSON = '..\extractData\edamam-extract\\data\\data.json'
+PATH_TO_SPOON_JSON = '..\extractData\\spoonacular-extract\\data\\data.json'
 
 # Read from JSON
 f = open(PATH_TO_EDAMAM_JSON, "rb")
@@ -26,6 +26,7 @@ connection = connect_local_sql_db()
 
 # Create database if it doesn't exist
 # TODO call create recipe db .sql script
+executeScriptsFromFile(connection, '..\create_recipe_db.sql')
 
 # Insert Data
 insert_data_from_json(connection, edamam_df)
