@@ -68,7 +68,7 @@ def create_sample_users(connection):
     user_fav_recipe_vals = [(1, 1), (1, 2), (1, 3), (2, 3), (2, 30),
                             (3, 5), (4, 10), (4, 11)]
 
-    execute_list_query(connection, pop_users(), user_fav_recipe_vals)
+    execute_list_query(connection, pop_users_fav_recipes(), user_fav_recipe_vals)
 
 def pop_users_fav_recipes():
     sql = """
