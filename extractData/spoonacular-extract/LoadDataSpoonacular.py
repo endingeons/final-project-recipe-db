@@ -5,7 +5,7 @@ import re
 import time
 
 PATH_TO_SPOON_JSON = 'data\\data.json'
-NUMBER_OF_RECIPES = 50
+NUMBER_OF_RECIPES = 100
 p = re.compile(r'[\d]+$')
 allRecipes = []
 
@@ -24,10 +24,10 @@ for recipe in random_recipes['recipes']:
 
     except:
         print('Failed to get recipe, continuing to next one')
-        time.sleep(3)
+        time.sleep(5)
         continue
 
-    time.sleep(1.5)
+    time.sleep(2)
 
 data = {'recipes': allRecipes}
 
