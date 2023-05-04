@@ -6,8 +6,8 @@ import json
 
 # Main script to read all json files and insert them into the database
 
-PATH_TO_EDAMAM_JSON = '..\extractData\edamam-extract\\data\\data.json'
-PATH_TO_SPOON_JSON = '..\extractData\\spoonacular-extract\\data\\data.json'
+PATH_TO_EDAMAM_JSON = '..\\extractData\edamam-extract\\data\\data.json'
+PATH_TO_SPOON_JSON = '..\\extractData\\spoonacular-extract\\data\\data.json'
 
 # Read from JSON
 f = open(PATH_TO_EDAMAM_JSON, "rb")
