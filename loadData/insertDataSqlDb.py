@@ -58,6 +58,13 @@ def insert_data_from_json(connection, data):
 
     print('Done!')
 
+def pop_users():
+    sql = """
+        INSERT INTO users (recipe_key, vegetarian, pescatarian, vegan, gluten_free, dairy_free, peanut_free)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+    """
+    return sql
+
 def pop_recipe_nutrition():
     sql = """
         INSERT INTO recipe_nutrition (recipe_key, fats, saturated_fats, protein, cholesterol, sugar, sodium)
