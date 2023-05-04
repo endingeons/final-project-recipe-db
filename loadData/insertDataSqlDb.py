@@ -43,8 +43,8 @@ def insert_data_from_json(connection, data):
             if i['unit'] == None:
                 i['unit'] = 'none'
 
-            # ingredient_key(AUTO), ingredient_name, category, price
-            ingredient_information_vals = [(i['ingredient_name'], i['category'], i['price'])]
+            # ingredient_key(AUTO), ingredient_name, category
+            ingredient_information_vals = [(i['ingredient_name'], i['category'])]
 
             curr_ingredient_id = execute_list_query(connection, pop_ingredient_information(),
                                                     ingredient_information_vals)
@@ -82,8 +82,8 @@ def pop_ingredient_list():
 
 def pop_ingredient_information():
     sql = """
-            INSERT INTO ingredient_information (ingredient_name, category, price)
-            VALUES (%s, %s, %s)
+            INSERT INTO ingredient_information (ingredient_name, category)
+            VALUES (%s, %s)
         """
     return sql
 

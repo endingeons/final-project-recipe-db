@@ -29,11 +29,8 @@ def parseEdamam(jsonData):
     
         ingredient_dict = {'ingredient_name': ingredientInformation['name'],
                            'category': ingredientInformation['category'],
-                           'price': ingredientInformation['price'],
                            'amount': ingredientList['value'],
                            'unit': ingredientList['unit']}
-
-        # TODO populate ingredient price from Spoonacular
 
         recipes_list = recipes_list + [(recipe_dict, ingredient_dict)]
 
@@ -70,7 +67,6 @@ def parseSpoonacular(jsonData):
 
         ingredient_dict = {'ingredient_name': [x['name'] for x in ingredientInformation],
                            'category': [x['aisle'] for x in ingredientInformation],
-                           'price': [-1] * len(ingredientInformation),
                            'amount': [x['amount'] for x in ingredientInformation],
                            'unit': [x['unit'] if x['unit'] else 'UNKNOWN' for x in ingredientInformation]}
 
